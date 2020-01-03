@@ -88,7 +88,7 @@ class Vendor{
 		$save_image = imagepng($png_image, $file_directory . '/' . $file_path);
 		
 		if($save_image){		
-			return isset($_SERVER['HTTPS']) ? 'https' : 'http' . '://' . $_SERVER['HTTP_HOST'] . '/' . $path . '/' . $file_path;
+			return isset($_SERVER['HTTPS']) ? 'https' . ";//" . $_SERVER['HTTP_HOST'] . '/' . $path . '/' . $file_path : 'http' . '://' . $_SERVER['HTTP_HOST'] . '/' . $path . '/' . $file_path;
 		}else{
 			return false;
 		}
@@ -313,7 +313,7 @@ class Vendor{
 	            break;
 	    }
 		
-		$directory = dirname(getcwd(), 3);
+		$directory = dirname(getcwd(), 4);
 		$path = 'uploads/images/' . date('Y') . '/' . date('m');
 		
 		$file_directory = $directory . '/' . $path;
@@ -327,7 +327,7 @@ class Vendor{
 		$save_image = imagepng($png_image, $file_directory . '/' . $file_path);
 		
 		if($save_image){		
-			return isset($_SERVER['HTTPS']) ? 'https' : 'http' . '://' . $_SERVER['HTTP_HOST'] . '/' . $path . '/' . $file_path;
+			return isset($_SERVER['HTTPS']) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . $path . '/' . $file_path: 'http' . '://' . $_SERVER['HTTP_HOST'] . '/' . $path . '/' . $file_path;
 		}else{
 			return null;
 		}
@@ -347,7 +347,7 @@ class Vendor{
 		$new_image = null;
 		if($primary_image['size'] > 0){
 			$new_image = $this->save_image($primary_image, $item_id, $_SESSION['UF_VENDOR_ID']);
-
+			
 			$sql .= ', primary_image = :primary_image';
 		} 
 		
