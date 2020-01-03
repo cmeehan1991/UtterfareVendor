@@ -4,10 +4,10 @@ namespace Deployer;
 require 'recipe/common.php';
 
 // Project name
-set('application', 'Utterfare');
+set('application', 'Utterfare Vendor');
 
 // Project repository
-set('repository', 'https://github.com/cmeehan1991/utterfare');
+set('repository', 'https://github.com/cmeehan1991/utterfarevendor');
 
 set('use_relative_symlinks', true);
 
@@ -18,7 +18,7 @@ set('ssh_multiplexing', true);
 
 set('git_recursive', false);
 
-set('branch', 'dev');
+set('branch', 'master');
 
 set('default_stage', 'dev ');
 
