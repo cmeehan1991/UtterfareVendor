@@ -1112,7 +1112,7 @@ window.signUserOut = function () {
     console.log('fail');
     console.log(error);
   }).done(function () {
-    window.location.href = "/utterfare/vendor/#!/";
+    window.location.href = "/#!/";
     location.reload();
   });
   return false;
