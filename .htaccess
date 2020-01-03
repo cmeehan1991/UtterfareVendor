@@ -1,5 +1,5 @@
 DirectoryIndex index.php index.html
-Options +FollowSymlinks -Indexes
+Options -Indexes
 
 RewriteEngine 	On # Turn on the rewriting engine
 RewriteCond		%{REQUEST_FILENAME} !-f
