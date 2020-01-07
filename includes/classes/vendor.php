@@ -74,7 +74,7 @@ class Vendor{
 	            break;
 	    }
 		
-		$directory = dirname(getcwd(), 4);
+		$directory = dirname(getcwd(), 5);
 		$path = 'uploads/images/' . date('Y') . '/' . date('m');
 		
 		$file_directory = $directory . '/' . $path;
@@ -117,7 +117,7 @@ class Vendor{
 		
 		$sql = "UPDATE vendors SET vendor_name = ?, primary_address = ?, secondary_address = ?, city = ?, state = ?, postal_code = ?, telephone = ?, email_address = ?, website_url = ?";
 				
-		if($profile_picture['size'] > 0){
+		if($profile_picture || $profile_picture['size'] > 0){
 			$profile_picture = $this->save_profile_picture($profile_picture, $company_id);
 			$sql .= ", profile_picture = ? WHERE vendor_id = ?";
 		}else{
@@ -214,7 +214,7 @@ class Vendor{
 			$_SESSION['user_id'] = $result['user_id'];
 			$_SESSION['UF_VENDOR_USER_SIGNED_IN'] = true;
 			$_SESSION['UF_VENDOR_USER_ID'] = $result['user_id'];
-			$_SESSION['UF_VENDOR_ID'] = $result['user_id'];
+			$_SESSION['UF_VENDOR_ID'] = $result['vendor_id'];
 			
 			$result['session']	 = $_SESSION;
 			
@@ -313,7 +313,7 @@ class Vendor{
 	            break;
 	    }
 		
-		$directory = dirname(getcwd(), 4);
+		$directory = dirname(getcwd(), 5);
 		$path = 'uploads/images/' . date('Y') . '/' . date('m');
 		
 		$file_directory = $directory . '/' . $path;
