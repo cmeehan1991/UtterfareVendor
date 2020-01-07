@@ -136,7 +136,7 @@ class Vendor{
 		$stmt->bindParam(8, $email_address);
 		$stmt->bindParam(9, $website);
 		
-		if($profile_picture['size'] > 0){
+		if($profile_picture){
 			
 			$stmt->bindParam(10, $profile_picture);
 			$stmt->bindParam(11, $company_id);
