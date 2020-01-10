@@ -1,5 +1,13 @@
 <div class="container-fluid">
 	<div class="row">
-		<h2>Content coming soon...</h2>
+		<div class="col-md-4">
+			<canvas id="thisWeekChart" width="100%" height="100%"></canvas>
+		</div>
+		<div class="col-md-4">
+			<canvas id="perSearchChart" width="100%" height="100%"></canvas>
+		</div>
+		<div class="col-md-4">
+			<canvas id="topTermsChart" width="100%" height="100%"></canvas>
+		</div>
 	</div>
 </div>

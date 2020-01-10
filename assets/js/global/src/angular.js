@@ -41,6 +41,8 @@ vendor.controller('vendorController', function($scope){
 		window.location.href = "#!/sign-in";
 	}
 	
+	window.getVendorData();
+	
 });
 
 vendor.controller('editItemController', function($scope, $routeParams){

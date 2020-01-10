@@ -17,6 +17,152 @@ window.getVendorStatus = function(){
 	return false;
 }
 
+window.getVendorData = function(){
+	numberOfSearchsThisWeek();
+	totalResultsPerSearch();
+	topSearchTerms();
+} 
+
+function topSearchTerms(){
+	var data = {
+		action: 'get_top_search_terms', 		
+	}
+	
+	var chart_data = new Array();
+	var chart_labels = new Array();
+	
+	$.post(window.vendor_class_url, data, function(response){
+		$.each(response, function(k,v){
+			chart_data.push(parseInt(v.num_times));
+			chart_labels.push(v.terms);
+		})
+	}, 'json')
+	.fail(function(error){
+		console.log("Error");
+		console.log(error);
+		console.log(error['responseText']);
+	})
+	.done(function(){
+			var backgroundColor = [
+			'blue',
+			'red',
+			'green',
+			'yellow',
+			'darkblue',
+			'orange',
+			'lightgreen'
+		];
+		populateChart(chart_data, chart_labels, 'topTermsChart', 'pie', '# Results per Search',  backgroundColor);
+	});
+
+}
+
+function totalResultsPerSearch(){
+	var data = {
+		action: 'get_vendor_results_per_search'
+	};
+	
+	var chart_data = new Array();
+	var chart_labels = new Array();
+	
+	$.post(window.vendor_class_url, data, function(response){
+		$.each(response, function(k,v){
+			chart_data.push(parseInt(v.num_times));
+			chart_labels.push(v.date_of_search);
+		})
+	}, 'json')
+	.fail(function(error){
+		console.log("Error");
+		console.log(error);
+		console.log(error['responseText']);
+	})
+	.done(function(){
+				var backgroundColor = [
+			'rgba(51, 51, 255, 1.0)',
+		];
+		
+		var borderColor = [
+			 'rgba(0, 0, 255, 1)',
+		];
+		populateChart(chart_data, chart_labels, 'perSearchChart', 'horizontalBar', '# Results per Search',  backgroundColor, borderColor);
+	});
+
+}
+
+
+function numberOfSearchsThisWeek(){
+	
+	var data = {
+		action: 'get_vendor_searches_by_day', 
+	}
+	
+	var chart_data = new Array();
+	var chart_labels = new Array();
+	
+	$.post(window.vendor_class_url, data, function(response){
+		$.each(response, function(k,v){
+			chart_data.push(parseInt(v.num_times));
+			chart_labels.push(v.date_of_search);
+		})
+	}, 'json')
+	.fail(function(error){
+		console.log("Error");
+		console.log(error);
+		console.log(error['responseText']);
+	})
+	.done(function(){
+				var backgroundColor = [
+			'rgba(51, 51, 255, 1.0)',
+			'rgba(51, 51, 255, 1.0)',
+			'rgba(51, 51, 255, 1.0)',
+			'rgba(51, 51, 255, 1.0)',
+			'rgba(51, 51, 255, 1.0)',
+			'rgba(51, 51, 255, 1.0)',
+			'rgba(51, 51, 255, 1.0)'
+		];
+		
+		var borderColor = [
+			 'rgba(0, 0, 255, 1)',
+			 'rgba(0, 0, 255, 1)',
+			 'rgba(0, 0, 255, 1)',
+			 'rgba(0, 0, 255, 1)',
+			 'rgba(0, 0, 255, 1)',
+			 'rgba(0, 0, 255, 1)',
+			 'rgba(0, 0, 255, 1)'
+		];
+		populateChart(chart_data, chart_labels, 'thisWeekChart', 'line', '# Searches By Day', backgroundColor, borderColor, false);
+	});
+	
+}
+
+window.populateChart = function(dataset, labels, chart, type, dataset_label, backgroundColor, fill){
+		
+	var ctx = document.getElementById(chart).getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: type,
+	    fillText: "No data to display",
+	    data: {
+	        labels: labels,
+	        datasets: [{
+	            label: dataset_label,
+	            data: dataset,
+	            backgroundColor: backgroundColor,
+	            borderWidth: 1,
+	            fill: fill
+	        }]
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero: true
+	                }
+	            }]
+	        }
+	    }
+	});
+}
+
 window.vendorSignIn = function(){
 	var data = $('.vendor-login-form').serialize();
 	data += '&action=vendor_sign_in';

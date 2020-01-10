@@ -35,10 +35,71 @@ class Vendor{
 				case 'save_company_profile':
 					$this->save_company_profile();
 					break;
+				case 'get_vendor_searches_by_day':
+					$this->get_vendor_searches_by_day();	
+					break;
+				case 'get_vendor_results_per_search':
+					$this->get_vendor_results_per_search();
+					break;
+				case 'get_top_search_terms':
+					$this->getTopSearchTerms();
+					break;
 				default: break;
 			}
 		}
 	}
+	
+	private function getTopSearchTerms(){
+		include('../functions/DBConnection.php');
+		
+		$sql = "SELECT count(terms) as num_times, terms FROM utterfare.searchdata_queries WHERE terms IS NOT NULL GROUP BY terms ORDER BY num_times";
+		
+		$stmt = $conn->prepare($sql);
+		
+		$stmt->execute();
+		
+		$results = $stmt->fetchall();
+		
+		echo json_encode($results);
+	}
+	
+	private function get_vendor_results_per_search(){
+		include ('../functions/DBConnection.php');
+		
+		$vendor_id = $_SESSION['UF_VENDOR_ID'];
+		
+		$sql = "SELECT COUNT(search_id) as 'num_times', DATE_FORMAT(search_date, '%m-%d') AS date_of_search FROM searchdata_results WHERE vendor_id = ? AND search_date >= DATE(NOW()) + INTERVAL -7 DAY GROUP BY date_of_search";
+		
+		$stmt = $conn->prepare($sql);
+		
+		$stmt->bindParam(1, $vendor_id);
+		
+		$stmt->execute();
+		
+		$results = $stmt->fetchall();
+		
+		echo json_encode($results);
+	}
+	
+	private function get_vendor_searches_by_day(){
+		include ('../functions/DBConnection.php');
+		
+		
+		$vendor_id = $_SESSION['UF_VENDOR_ID'];
+				
+		$sql = "SELECT COUNT(DISTINCT search_id) as 'num_times', DATE_FORMAT(search_date, '%m-%d') AS date_of_search FROM searchdata_results WHERE vendor_id = ? AND search_date >= DATE(NOW()) + INTERVAL -7 DAY GROUP BY date_of_search";
+		
+	
+		$stmt = $conn->prepare($sql);
+		$stmt->bindParam(1, $vendor_id);
+		
+		$stmt->execute();
+		$results = $stmt->fetchall();			
+				
+				
+		echo json_encode($results);
+	}
+	
 	
 	/* 
 	 * Create a new file for the company profile picture
