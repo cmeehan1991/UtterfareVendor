@@ -1,0 +1,21 @@
+[13-Jan-2020 08:57:59 America/Chicago] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1142 SELECT command denied to user 'cmeehan_ufare'@'localhost' for table 'searchdata_queries' in /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php:295
+Stack trace:
+#0 /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php(295): PDOStatement->execute()
+#1 /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php(45): Vendor->getTopSearchTerms()
+#2 /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php(715): Vendor->__construct()
+#3 {main}
+  thrown in /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php on line 295
+[13-Jan-2020 09:01:45 America/Chicago] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1142 SELECT command denied to user 'cmeehan_ufare'@'localhost' for table 'searchdata_queries' in /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php:295
+Stack trace:
+#0 /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php(295): PDOStatement->execute()
+#1 /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php(45): Vendor->getTopSearchTerms()
+#2 /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php(715): Vendor->__construct()
+#3 {main}
+  thrown in /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php on line 295
+[13-Jan-2020 09:01:47 America/Chicago] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1142 SELECT command denied to user 'cmeehan_ufare'@'localhost' for table 'searchdata_queries' in /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php:295
+Stack trace:
+#0 /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php(295): PDOStatement->execute()
+#1 /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php(45): Vendor->getTopSearchTerms()
+#2 /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php(715): Vendor->__construct()
+#3 {main}
+  thrown in /home1/cmeehan/public_html/vendor/releases/1/includes/classes/vendor.php on line 295

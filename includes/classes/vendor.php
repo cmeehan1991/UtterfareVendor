@@ -385,7 +385,7 @@ class Vendor{
 		$save_image = imagepng($png_image, $file_directory . '/' . $file_path);
 		
 		if($save_image){		
-			return isset($_SERVER['HTTPS']) ? 'https' . ";//" . $_SERVER['HTTP_HOST'] . '/' . $path . '/' . $file_path : 'http' . '://' . $_SERVER['HTTP_HOST'] . '/' . $path . '/' . $file_path;
+			return isset($_SERVER['HTTPS']) ? 'https' . "://" . 'www.utterfare.com' . '/' . $path . '/' . $file_path : 'http' . '://' . 'www.utterfare.com' . '/' . $path . '/' . $file_path;
 		}else{
 			return false;
 		}
@@ -624,7 +624,7 @@ class Vendor{
 		$save_image = imagepng($png_image, $file_directory . '/' . $file_path);
 		
 		if($save_image){		
-			return isset($_SERVER['HTTPS']) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' . $path . '/' . $file_path: 'http' . '://' . $_SERVER['HTTP_HOST'] . '/' . $path . '/' . $file_path;
+			return isset($_SERVER['HTTPS']) ? 'https://' . 'www.utterfare.com' . '/' . $path . '/' . $file_path: 'http' . '://' . 'www.utterfare.com' . '/' . $path . '/' . $file_path;
 		}else{
 			return null;
 		}
